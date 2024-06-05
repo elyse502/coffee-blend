@@ -4,31 +4,30 @@
 <?php
 
 
+  if(isset($_POST['submit'])){
 
-if(isset($_POST['submit'])){
+    if(empty($_POST['username']) OR empty($_POST['email']) OR empty($_POST['password'])){
+      echo "<script>alert('one or more inputs are empty');</script>";
+    } else {
+      $username = $_POST['username'];
+      $email = $_POST['email'];
+      $password = password_hash($_POST['username'], PASSWORD_DEFAULT);
 
-  if(empty($_POST['username']) OR empty($_POST['email']) OR empty($_POST['password'])){
-    echo "<script>alert('one or more inputs are empty');</script>";
-  } else {
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = password_hash($_POST['username'], PASSWORD_DEFAULT);
+      $insert = $conn->prepare("INSERT INTO users (username, email, password)
+      VALUES (:username, :email, :password)");
 
-    $insert = $conn->prepare("INSERT INTO users (username, email, password)
-     VALUES (:username, :email, :password)");
+      $insert->execute([
+        ':username' => $username,
+        ':email' => $email,
+        ':password' => $password
+      ]);
 
-    $insert->execute([
-      ':username' => $username,
-      ':email' => $email,
-      ':password' => $password
-    ]);
-
-    header("location: login.php");
-
+      header("location: login.php");
 
 
+
+    }
   }
-}
 
 
 ?>
@@ -80,7 +79,7 @@ if(isset($_POST['submit'])){
                 <div class="col-md-12">
                 	<div class="form-group mt-4">
 							<div class="radio">
-                    <button name="submit" class="btn btn-primary py-3 px-4">Register</button>
+                    <button type="submit" name="submit" class="btn btn-primary py-3 px-4">Register</button>
 						    </div>
 					</div>
                 </div>

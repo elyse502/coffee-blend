@@ -2,7 +2,9 @@
 <?php require "../config/config.php"; ?>
 <?php 
 
-
+  if(isset($_SESSION['username'])){
+    header("location: ".APPURL."");
+  }
   
   if(isset($_POST['submit'])){
 
@@ -25,7 +27,13 @@
 
         if(password_verify($password, $fetch['password'])){
           //start session
+
+          $_SESSION['username'] = $fetch['username'];
+          $_SESSION['email'] = $fetch['email'];
+          $_SESSION['user_id'] = $fetch['user_id'];
+
           header("location: ".APPURL."");
+
         } else {
           echo "<script>alert('email or password is wrong');</script>";
 

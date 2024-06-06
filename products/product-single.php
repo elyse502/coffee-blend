@@ -3,13 +3,20 @@
 <?php 
 
 
-	if(isset($_GET['id'])) {
+	if(isset($_GET['id'])){
 		$id = $_GET['id'];
 
 		$product = $conn->query("SELECT * FROM products WHERE id='$id'");
 		$product->execute();
 
 		$singleProduct = $product->fetch(PDO::FETCH_OBJ);
+
+		$relatedProducts = $conn->query("SELECT * FROM products WHERE type='$singleProduct->type' 
+		AND id!='$singleProduct->id'");
+
+		$relatedProducts->execute();
+
+		$allRelatedProducts = $relatedProducts->fetchAll(PDO::FETCH_OBJ);
 	}
 
 
@@ -91,50 +98,22 @@
           </div>
         </div>
         <div class="row">
+			<?php foreach($allRelatedProducts as $allRelatedProducts): ?>
         	<div class="col-md-3">
         		<div class="menu-entry">
-    					<a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
+    					<a href="<?php echo APPURL; ?>/products/product-single.php?id=<?php echo $allRelatedProducts->id; ?>" class="img" style="background-image: url(<?php echo APPURL; ?>/images/<?php echo $allRelatedProducts->image; ?>);"></a>
     					<div class="text text-center pt-4">
-    						<h3><a href="#">Coffee Capuccino</a></h3>
-    						<p>A small river named Duden flows by their place and supplies</p>
-    						<p class="price"><span>$5.90</span></p>
+    						<h3><a href="<?php echo APPURL; ?>/products/product-single.php?id=<?php echo $allRelatedProducts->id; ?>"><?php echo $allRelatedProducts->name ?></a></h3>
+    						<p>
+								<?php echo $allRelatedProducts->description ?>
+							</p>
+    						<p class="price"><span>$<?php echo $allRelatedProducts->price ?></span></p>
     						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
     					</div>
     				</div>
         	</div>
-        	<div class="col-md-3">
-        		<div class="menu-entry">
-    					<a href="#" class="img" style="background-image: url(images/menu-2.jpg);"></a>
-    					<div class="text text-center pt-4">
-    						<h3><a href="#">Coffee Capuccino</a></h3>
-    						<p>A small river named Duden flows by their place and supplies</p>
-    						<p class="price"><span>$5.90</span></p>
-    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-    					</div>
-    				</div>
-        	</div>
-        	<div class="col-md-3">
-        		<div class="menu-entry">
-    					<a href="#" class="img" style="background-image: url(images/menu-3.jpg);"></a>
-    					<div class="text text-center pt-4">
-    						<h3><a href="#">Coffee Capuccino</a></h3>
-    						<p>A small river named Duden flows by their place and supplies</p>
-    						<p class="price"><span>$5.90</span></p>
-    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-    					</div>
-    				</div>
-        	</div>
-        	<div class="col-md-3">
-        		<div class="menu-entry">
-    					<a href="#" class="img" style="background-image: url(images/menu-4.jpg);"></a>
-    					<div class="text text-center pt-4">
-    						<h3><a href="#">Coffee Capuccino</a></h3>
-    						<p>A small river named Duden flows by their place and supplies</p>
-    						<p class="price"><span>$5.90</span></p>
-    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-    					</div>
-    				</div>
-        	</div>
+			<?php endforeach; ?>
+        	
         </div>
     	</div>
     </section>

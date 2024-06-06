@@ -6,17 +6,45 @@
 	if(isset($_GET['id'])){
 		$id = $_GET['id'];
 
+
+		//data for single product
 		$product = $conn->query("SELECT * FROM products WHERE id='$id'");
 		$product->execute();
 
 		$singleProduct = $product->fetch(PDO::FETCH_OBJ);
 
+
+		//data for relatedProducts
 		$relatedProducts = $conn->query("SELECT * FROM products WHERE type='$singleProduct->type' 
 		AND id!='$singleProduct->id'");
 
 		$relatedProducts->execute();
 
 		$allRelatedProducts = $relatedProducts->fetchAll(PDO::FETCH_OBJ);
+
+
+		//add to cart
+		if(isset($_POST['submit'])){
+
+			$name = $_POST['name'];
+			$image = $_POST['image'];
+			$price = $_POST['price'];
+			$description = $_POST['description'];
+			$quantity = $_POST['quantity'];
+			$user_id = $_SESSION['user_id'];
+
+			$insert_cart = $conn->prepare("INSERT INTO cart (name, image, price, description, 
+			quantity, user_id) VALUES (:name, :image, :price, :description, :quantity, :user_id)");
+
+			$insert_cart->execute([
+				':name' => $name,
+				':image' => $image,
+				':price' => $price,
+				':description' => $description,
+				':quantity' => $quantity,
+				':user_id' => $user_id
+			]);
+		}
 	}
 
 
@@ -56,16 +84,16 @@
 					<div class="row mt-4">
 							<div class="col-md-6">
 								<div class="form-group d-flex">
-								<div class="select-wrap">
-								<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-								<select name="" id="" class="form-control">
-									<option value="">Small</option>
-									<option value="">Medium</option>
-									<option value="">Large</option>
-									<option value="">Extra Large</option>
-								</select>
+									<div class="select-wrap">
+									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+									<select name="" id="" class="form-control">
+										<option value="">Small</option>
+										<option value="">Medium</option>
+										<option value="">Large</option>
+										<option value="">Extra Large</option>
+									</select>
 								</div>
-		            </div>
+		            		</div>
 							</div>
 							<div class="w-100"></div>
 							<div class="input-group col-md-6 d-flex mb-3">
@@ -74,6 +102,9 @@
 	                   <i class="icon-minus"></i>
 	                	</button>
 	            		</span>
+				<form method="POST" action="product-single.php?id=<?php echo $id; ?>">
+
+
 	             	<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
 	             	<span class="input-group-btn ml-2">
 	                	<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
@@ -82,7 +113,12 @@
 	             	</span>
 	          	</div>
           	</div>
-          	<p><a href="cart.html" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
+				<input name="name" value="<?php echo $singleProduct->name; ?>" type="text">
+				<input name="image" value="<?php echo $singleProduct->image; ?>" type="text">
+				<input name="price" value="<?php echo $singleProduct->price; ?>" type="text">
+				<input name="description" value="<?php echo $singleProduct->description; ?>" type="text">
+          		<p><button name="submit" type="submit" class="btn btn-primary py-3 px-5">Add to Cart</button></p>
+			</form>			
     			</div>
     		</div>
     	</div>
@@ -108,7 +144,7 @@
 								<?php echo $allRelatedProducts->description ?>
 							</p>
     						<p class="price"><span>$<?php echo $allRelatedProducts->price ?></span></p>
-    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
+    						<p><a href="<?php echo APPURL; ?>/products/product-single.php?id=<?php echo $allRelatedProducts->id; ?>" class="btn btn-primary btn-outline-primary">show</a></p>
     					</div>
     				</div>
         	</div>

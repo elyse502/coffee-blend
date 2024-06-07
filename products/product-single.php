@@ -46,6 +46,8 @@
 				':quantity' => $quantity,
 				':user_id' => $user_id
 			]);
+
+			echo "<script>alert('added to cart successfully');</script>";
 		}
 
 
@@ -134,9 +136,9 @@
 				<input name="pro_id" value="<?php echo $singleProduct->id; ?>" type="hidden">
 				<input name="description" value="<?php echo $singleProduct->description; ?>" type="hidden">
 				<?php if($rowCount > 0): ?>
-					<button name="submit" type="submit" class="btn btn-primary py-3 px-5" disabled>Added to Cart</button>
+					<button style="margin-top: -335px; margin-left: 632px; height: 65px;" name="submit" type="submit" class="btn btn-primary py-3 px-5" disabled>Added to Cart</button>
 				<?php else: ?>
-          			<button name="submit" type="submit" class="btn btn-primary py-3 px-5">Add to Cart</button>
+          			<button style="margin-top: -335px; margin-left: 632px; height: 65px;" name="submit" type="submit" class="btn btn-primary py-3 px-5">Add to Cart</button>
 				<?php endif; ?>
 			</form>			
     			</div>

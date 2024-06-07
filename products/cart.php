@@ -2,11 +2,22 @@
 <?php require "../config/config.php"; ?>
 <?php 
 
-
+	if(!isset($_SESSION['user_id'])){
+		header("location: ".APPURL."");
+	}
+	
 	$products = $conn->query("SELECT * FROM cart WHERE user_id='$_SESSION[user_id]'");
 	$products->execute();
 
-	$allProducts = $products->fetchAll(PDO::FETCH_OBJ)
+	$allProducts = $products->fetchAll(PDO::FETCH_OBJ);
+
+
+	//cart total
+
+	$cartTotal = $conn->query("SELECT SUM(quantity*price) AS total FROM cart WHERE user_id='$_SESSION[user_id]'");
+	$cartTotal->execute();
+
+	$allCartTotal = $cartTotal->fetch(PDO::FETCH_OBJ);
 
 ?>	
 
@@ -78,11 +89,11 @@
     					<h3>Cart Totals</h3>
     					<p class="d-flex">
     						<span>Subtotal</span>
-    						<span>$20.60</span>
+    						<span>$<?php echo $allCartTotal->total; ?></span>
     					</p>
     					<p class="d-flex">
     						<span>Delivery</span>
-    						<span>$0.00</span>
+    						<span>$10.00</span>
     					</p>
     					<p class="d-flex">
     						<span>Discount</span>
@@ -91,7 +102,7 @@
     					<hr>
     					<p class="d-flex total-price">
     						<span>Total</span>
-    						<span>$17.60</span>
+    						<span>$<?php echo $allCartTotal->total + 10 - 3; ?></span>
     					</p>
     				</div>
     				<p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
@@ -100,7 +111,7 @@
 			</div>
 		</section>
 
-    <section class="ftco-section">
+    <!-- <section class="ftco-section">
     	<div class="container">
     		<div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 heading-section ftco-animate text-center">
@@ -156,6 +167,6 @@
         	</div>
         </div>
     	</div>
-    </section>
+    </section> -->
 
 <?php require "../includes/footer.php"; ?>    

@@ -2,6 +2,7 @@
 <?php require "../config/config.php"; ?>
 <?php 
 
+	$_SESSION['user_id'] = 1; //This is for fixing a small typo.....
 	if(!isset($_SESSION['user_id'])){
 		header("location: ".APPURL."");
 	}
@@ -18,6 +19,17 @@
 	$cartTotal->execute();
 
 	$allCartTotal = $cartTotal->fetch(PDO::FETCH_OBJ);
+
+
+	//proceed to checkout
+	$_SESSION['total_price'] = 14; //This is for fixing a small typo.....
+
+	if(isset($_POST['checkout'])){
+
+		$_SESSION['total_price'] = $_POST['total_price'];
+
+		header("location: checkout.php");
+	}
 
 ?>	
 
@@ -105,68 +117,16 @@
     						<span>$<?php echo $allCartTotal->total + 10 - 3; ?></span>
     					</p>
     				</div>
-    				<p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+					<form method="POST" action="checkout.php">
+						<input type="hidden" name="total_price" value="<?php echo $allCartTotal->total + 10 - 3; ?>">
+
+						<button name="checkout" type="submit" class="btn btn-primary py-3 px-4">Proceed to Checkout</button>
+					</form>
     			</div>
     		</div>
 			</div>
 		</section>
 
-    <!-- <section class="ftco-section">
-    	<div class="container">
-    		<div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 heading-section ftco-animate text-center">
-          	<span class="subheading">Discover</span>
-            <h2 class="mb-4">Related products</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-          </div>
-        </div>
-        <div class="row">
-        	<div class="col-md-3">
-        		<div class="menu-entry">
-    					<a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
-    					<div class="text text-center pt-4">
-    						<h3><a href="#">Coffee Capuccino</a></h3>
-    						<p>A small river named Duden flows by their place and supplies</p>
-    						<p class="price"><span>$5.90</span></p>
-    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-    					</div>
-    				</div>
-        	</div>
-        	<div class="col-md-3">
-        		<div class="menu-entry">
-    					<a href="#" class="img" style="background-image: url(images/menu-2.jpg);"></a>
-    					<div class="text text-center pt-4">
-    						<h3><a href="#">Coffee Capuccino</a></h3>
-    						<p>A small river named Duden flows by their place and supplies</p>
-    						<p class="price"><span>$5.90</span></p>
-    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-    					</div>
-    				</div>
-        	</div>
-        	<div class="col-md-3">
-        		<div class="menu-entry">
-    					<a href="#" class="img" style="background-image: url(images/menu-3.jpg);"></a>
-    					<div class="text text-center pt-4">
-    						<h3><a href="#">Coffee Capuccino</a></h3>
-    						<p>A small river named Duden flows by their place and supplies</p>
-    						<p class="price"><span>$5.90</span></p>
-    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-    					</div>
-    				</div>
-        	</div>
-        	<div class="col-md-3">
-        		<div class="menu-entry">
-    					<a href="#" class="img" style="background-image: url(images/menu-4.jpg);"></a>
-    					<div class="text text-center pt-4">
-    						<h3><a href="#">Coffee Capuccino</a></h3>
-    						<p>A small river named Duden flows by their place and supplies</p>
-    						<p class="price"><span>$5.90</span></p>
-    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-    					</div>
-    				</div>
-        	</div>
-        </div>
-    	</div>
-    </section> -->
+ 
 
 <?php require "../includes/footer.php"; ?>    

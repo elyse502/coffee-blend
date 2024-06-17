@@ -5,6 +5,17 @@
 	$_SESSION['total_price'] = 14; //This is for fixing a small typo.....
 	$_SESSION['user_id'] = 1; //This is for fixing a small typo.....
 
+	if(!isset($_SERVER['HTTP_REFERER'])){
+        // redirect them to your desired location
+        header('location: http://localhost/coffee-blend/index.php');
+        exit;
+    }
+
+	if(!isset($_SESSION['user_id'])){
+		header("location: ".APPURL."");
+	}
+
+
 	if(isset($_POST['submit'])){
 
 		if(empty($_POST['first_name']) OR empty($_POST['last_name']) OR empty($_POST['state'])

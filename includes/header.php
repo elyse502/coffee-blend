@@ -45,10 +45,10 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item active"><a href="<?php echo APPURL; ?>" class="nav-link">Home</a></li>
 	          <li class="nav-item"><a href="menu.php" class="nav-link">Menu</a></li>
-	          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+	          <li class="nav-item"><a href="services.php" class="nav-link">Services</a></li>
+	          <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
 	         
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+	          <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
             <?php if(isset($_SESSION['username'])) : ?>
 	          <li class="nav-item cart"><a href="<?php echo APPURL; ?>/products/cart.php" class="nav-link"><span class="icon icon-shopping_cart"></span></a>
             <li class="nav-item dropdown">

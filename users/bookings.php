@@ -2,6 +2,11 @@
 <?php require "../config/config.php"; ?>
 <?php
 
+
+    if(!isset($_SESSION['user_id'])){
+        header("location: ".APPURL."");
+    }
+
     $bookings = $conn->query("SELECT * FROM bookings WHERE user_id='$_SESSION[user_id]'");
     $bookings->execute();
 

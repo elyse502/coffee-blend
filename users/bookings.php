@@ -40,13 +40,14 @@
 	    				<table class="table">
 						    <thead class="thead-primary">
 						      <tr class="text-center">
-						        <th>first_name</th>
-						        <th>last_name</th>
-						        <th>date</th>
-						        <th>time</th>
-						        <th>phone</th>
-						        <th>message</th>
-						        <th>status</th>
+						        <th>First Name</th>
+						        <th>Last Name</th>
+						        <th>Date</th>
+						        <th>Time</th>
+						        <th>Phone</th>
+						        <th>Message</th>
+						        <th>Status</th>
+						        <th>Write Review</th>
 
 						      </tr>
 						    </thead>
@@ -69,6 +70,9 @@
 						        
 						        <td class="total"><?php echo $booking->message; ?></td>
 						        <td class="total"><?php echo $booking->status; ?></td>
+								<?php if($booking->status == "Done") : ?>
+									<td class="total"><a class="btn btn-primary" href="<?php echo APPURL; ?>reviews/write-review.php">write review</a></td>
+								<?php endif; ?>
 						      </tr>
 							<?php endforeach; ?>
 						      

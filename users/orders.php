@@ -48,6 +48,7 @@
 						        <th>Phone</th>
 						        <th>Total Price</th>
 						        <th>Status</th>
+						        <th>Write Review</th>
 
 						      </tr>
 						    </thead>
@@ -70,6 +71,9 @@
 						        
 						        <td class="total">$<?php echo $order->total_price; ?></td>
 						        <td class="total"><?php echo $order->status; ?></td>
+								<?php if($order->status == "Delivered") : ?>
+						        	<td class="total"><a class="btn btn-primary" href="<?php echo APPURL; ?>reviews/write-review.php">write review</a></td>
+								<?php endif; ?>
 						      </tr>
 							<?php endforeach; ?>
 						      

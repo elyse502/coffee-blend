@@ -21,7 +21,6 @@
 
 
 	//proceed to checkout
-	$_SESSION['total_price'] = 14; //This is for fixing a small typo.....
 
 	if(isset($_POST['checkout'])){
 

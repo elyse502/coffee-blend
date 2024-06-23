@@ -2,7 +2,6 @@
 <?php require "../config/config.php"; ?>
 <?php 
 
-	$_SESSION['user_id'] = 1; //This is for fixing a small typo.....
 	if(!isset($_SESSION['user_id'])){
 		header("location: ".APPURL."");
 	}

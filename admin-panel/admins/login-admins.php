@@ -2,9 +2,9 @@
 <?php require "../../config/config.php"; ?>
 <?php 
 
-  // if(isset($_SESSION['username'])){
-  //   header("location: ".APPURL."");
-  // }
+  if(isset($_SESSION['admin_name'])){
+    header("location: ".ADMINURL."");
+  }
   
   if(isset($_POST['submit'])){
 
@@ -28,9 +28,9 @@
         if(password_verify($password, $fetch['password'])){
           //start session
 
-          // $_SESSION['username'] = $fetch['username'];
-          // $_SESSION['email'] = $fetch['email'];
-          // $_SESSION['user_id'] = $fetch['user_id'];
+          $_SESSION['admin_name'] = $fetch['adminname'];
+          $_SESSION['email'] = $fetch['email'];
+          $_SESSION['admin_id'] = $fetch['id'];
 
           header("location: ".ADMINURL."");
 

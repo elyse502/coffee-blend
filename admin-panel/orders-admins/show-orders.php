@@ -50,8 +50,8 @@
                     <td>$<?php echo $order->total_price; ?></td>
 
                     <td><?php echo $order->status; ?></td>
-                    <td><a href="change-status.php?=<?php echo $order->id; ?>" class="btn btn-warning  text-white  text-center ">update</a></td>
-                    <td><a href="delete-orders.php?=<?php echo $order->id; ?>" class="btn btn-danger  text-center ">delete</a></td>
+                    <td><a href="change-status.php?id=<?php echo $order->id; ?>" class="btn btn-warning  text-white  text-center ">update</a></td>
+                    <td><a href="delete-orders.php?id=<?php echo $order->id; ?>" class="btn btn-danger  text-center ">delete</a></td>
                   </tr>
                  <?php endforeach; ?> 
                 </tbody>

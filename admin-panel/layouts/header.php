@@ -35,7 +35,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admins/admins.html" style="margin-left: 20px;">Admins</a>
+            <a class="nav-link" href="admins/admins.php" style="margin-left: 20px;">Admins</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="orders-admins/show-orders.html" style="margin-left: 20px;">Orders</a>

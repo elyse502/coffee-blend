@@ -150,7 +150,7 @@
                 <div class="col-md-12">
                 	<div class="form-group mt-4">
 					<div class="radio">
-                      <p><button type="submit" class="btn btn-primary py-3 px-4">Place an order and pay</button></p>
+                      <p><button type="submit" name="submit" class="btn btn-primary py-3 px-4">Place an order and pay</button></p>
 
 						</div>
 					</div>

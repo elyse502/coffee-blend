@@ -13,7 +13,7 @@
     } else {
       $username = $_POST['username'];
       $email = $_POST['email'];
-      $password = password_hash($_POST['username'], PASSWORD_DEFAULT);
+      $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
       $insert = $conn->prepare("INSERT INTO users (username, email, password)
       VALUES (:username, :email, :password)");

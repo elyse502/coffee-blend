@@ -2,8 +2,6 @@
 <?php require "../config/config.php"; ?>
 <?php
 
-	$_SESSION['total_price'] = 14; //This is for fixing a small typo.....
-	$_SESSION['user_id'] = 1; //This is for fixing a small typo.....
 
 	if(!isset($_SERVER['HTTP_REFERER'])){
         // redirect them to your desired location

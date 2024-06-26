@@ -22,9 +22,7 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
                     <th scope="col">first_name</th>
-                    <th scope="col">last_name</th>
                     <th scope="col">town</th>
                     <th scope="col">state</th>
                     <th scope="col">zip_code</th>
@@ -32,15 +30,14 @@
                     <th scope="col">street_address</th>
                     <th scope="col">total_price</th>
                     <th scope="col">status</th>
+                    <th scope="col">update</th>
                     <th scope="col">delete</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php foreach($allorders as $order) : ?>
                   <tr>
-                    <th scope="row"><?php echo $order->id; ?></th>
                     <td><?php echo $order->first_name; ?></td>
-                    <td><?php echo $order->last_name; ?></td>
                     <td><?php echo $order->town; ?></td>
                     <td><?php echo $order->state; ?></td>
                     <td>
@@ -53,6 +50,7 @@
                     <td>$<?php echo $order->total_price; ?></td>
 
                     <td><?php echo $order->status; ?></td>
+                    <td><a href="change-status.php?=<?php echo $order->id; ?>" class="btn btn-warning  text-white  text-center ">update</a></td>
                     <td><a href="delete-orders.php?=<?php echo $order->id; ?>" class="btn btn-danger  text-center ">delete</a></td>
                   </tr>
                  <?php endforeach; ?> 

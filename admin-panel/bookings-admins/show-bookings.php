@@ -29,6 +29,7 @@
                     <th scope="col">phone</th>
                     <th scope="col">message</th>
                     <th scope="col">status</th>
+                    <th scope="col">change status</th>
                     <th scope="col">created_at</th>
                     <th scope="col">delete</th>
                   </tr>
@@ -42,10 +43,15 @@
                     <td><?php echo $booking->date; ?> </td>
                     <td><?php echo $booking->time; ?></td>
                     <td><?php echo $booking->phone; ?></td>
-                    <td><?php echo $booking->message; ?></td>
+                    <td>
+                    <?php echo $booking->message; ?>
+                    </td>
                     <td><?php echo $booking->status; ?></td>
+                    <td><a href="change-status.php?id=<?php echo $booking->id; ?>" class="btn btn-warning text-white  text-center ">change status</a></td>
+
                     <td><?php echo $booking->created_at; ?></td>
-                     <td><a href="delete-bookings.php?=<?php echo $booking->id; ?>" class="btn btn-danger  text-center ">delete</a></td>
+
+                     <td><a href="delete-bookings.php?id=<?php echo $booking->id; ?>" class="btn btn-danger  text-center ">delete</a></td>
                   </tr>
                   <?php endforeach ?>
                   

@@ -3,13 +3,13 @@
 <?php
 
   if(!isset($_SESSION['admin_name'])){
-    header("location: ".ADMINURL."/admins/login-admins.php");
+    header("location: ".ADMINURL."/orders/login-orders.php");
   }
 
   $orders = $conn->query("SELECT * FROM orders");
   $orders->execute();
 
-  $allorders = $orders->fetchAll(PDO::FETCH_OBJ);
+  $allOrders = $orders->fetchAll(PDO::FETCH_OBJ);
 
 ?>
 
@@ -35,7 +35,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach($allorders as $order) : ?>
+                  <?php foreach($allOrders as $order) : ?>
                   <tr>
                     <td><?php echo $order->first_name; ?></td>
                     <td><?php echo $order->town; ?></td>

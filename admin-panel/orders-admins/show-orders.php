@@ -3,7 +3,7 @@
 <?php
 
   if(!isset($_SESSION['admin_name'])){
-    header("location: ".ADMINURL."/orders/login-orders.php");
+    header("location: ".ADMINURL."/admins/login-admins.php");
   }
 
   $orders = $conn->query("SELECT * FROM orders");

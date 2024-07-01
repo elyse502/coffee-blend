@@ -140,7 +140,7 @@
 					<?php if($rowCount > 0): ?>
 						<button style="margin-top: -335px; margin-left: 632px; height: 65px;" name="submit" type="submit" class="btn btn-primary py-3 px-5" disabled>Added to Cart</button>
 					<?php else: ?>
-						<button style="margin-top: -35px; margin-left: 632px; height: 65px;" name="submit" type="submit" class="btn btn-primary py-3 px-5">Add to Cart</button>
+						<button style="display: inline-block; position: relative; z-index: 1; padding: 2em; margin: -2em; margin-top: -335px; margin-left: 632px; height: 65px;" name="submit" type="submit" class="btn btn-primary py-3 px-5">Add to Cart</button>
 					<?php endif; ?>
 				<?php else : ?>
 					<p style="margin-top: -335px; margin-left: 632px; height: 65px;">login to add product to cart</p>

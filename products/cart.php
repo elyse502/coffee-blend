@@ -124,7 +124,7 @@
 					<form method="POST" action="cart.php">
 						<input type="hidden" name="total_price" value="<?php echo $allCartTotal->total + 10 - 3; ?>">
 						<?php if($allCartTotal->total > 0) : ?>
-						<button name="checkout" type="submit" class="btn btn-primary py-3 px-4">Proceed to Checkout</button>
+						<button style="background-color: black;" name="checkout" type="submit" class="btn btn-primary py-3 px-4">Proceed to Checkout</button>
 						<?php endif; ?>
 					</form>
     			</div>

@@ -126,9 +126,13 @@
 	    					<div class="form-group">
 		              <textarea name="message" id="" cols="30" rows="2" class="form-control" placeholder="Message"></textarea>
 		            </div>
-		            <div class="form-group ml-md-4">
-		              <button type="submit" name="submit" class="btn btn-white py-3 px-4">Book a Table</button>
-		            </div>
+					<?php if(isset($_SESSION['user_id'])) : ?>
+						<div class="form-group ml-md-4">
+							<button type="submit" name="submit" class="btn btn-white py-3 px-4">Book a Table</button>
+						</div>
+					<?php else : ?>
+						<p class="text-white">login to book a table</p>
+					<?php endif; ?>
 	    				</div>
 	    			</form>
 	    		</div>
@@ -290,7 +294,7 @@
 			<?php foreach($allProducts as $products) : ?>
 				<div class="col-md-3">
 					<div class="menu-entry">
-							<a target="_blank" href="products/product-single.php?id=<?php echo $products->id ?>" class="img" style="background-image: url(<?php echo APPURL; ?>/images/<?php echo $products->image ?>);"></a>
+							<a target="_blank" href="products/product-single.php?id=<?php echo $products->id ?>" class="img" style="background-image: url(<?php echo IMAGEPRODUCTS; ?>/<?php echo $products->image ?>);"></a>
 							<div class="text text-center pt-4">
 								<h3><a href="#"><?php echo $products->name; ?></a></h3>
 								<p><?php echo $products->description; ?></p>

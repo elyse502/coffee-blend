@@ -1,22 +1,22 @@
 <?php require "../includes/header.php"; ?>
 <?php require "../config/config.php"; ?>
-<?php
+<?php 
 
 
 	if(!isset($_SERVER['HTTP_REFERER'])){
-        // redirect them to your desired location
-        header('location: http://localhost/coffee-blend/index.php');
-        exit;
-    }
+		// redirect them to your desired location
+		header('location: http://localhost/coffee-blend');
+		exit;
+	}
 
-	if(!isset($_SESSION['user_id'])){
+	if(!isset($_SESSION['user_id'])) {
 		header("location: ".APPURL."");
 	}
 
 
-	if(isset($_POST['submit'])){
+	if(isset($_POST['submit'])) {
 
-		if(empty($_POST['review'])){
+		if(empty($_POST['review'])) {
 			echo "<script>alert('one or more inputs are empty');</script>";
 		} else {
 
@@ -24,22 +24,23 @@
             $username = $_SESSION['username'];
 			
 
+			
+
 			$writeReview = $conn->prepare("INSERT INTO reviews (review, username) VALUES (:review, :username)");
 
 			$writeReview->execute([
-				':review' => $review,
-                ':username' => $username
+				":review" => $review,
+				":username" => $username,
+				
 			]);
 
-			header("<script>alert('review submitted');</script>");
-
+			echo "<script>alert('review submitted');</script>";
 
 		}
 	}
 
 
 ?>
-
     <section class="home-slider owl-carousel">
 
       <div class="slider-item" style="background-image: url(<?php echo APPURL; ?>/images/bg_3.jpg);" data-stellar-background-ratio="0.5">
@@ -66,7 +67,7 @@
 	          	<div class="row align-items-end">
 	          		<div class="col-md-12">
 	                <div class="form-group">
-	                	<label for="firstname">Review</label>
+	                	<label for="review">Review</label>
 	                  <input name="review" type="text" class="form-control" placeholder="write review">
 	                </div>
 	              </div>
@@ -74,12 +75,12 @@
                   <div class="col-md-12">
                 	<div class="form-group mt-4">
 					<div class="radio">
-                      <p><button type="submit" class="btn btn-primary py-3 px-4">Submit review</button></p>
+                      <p><button type="submit" name="submit" class="btn btn-primary py-3 px-4">Submit review</button></p>
 
 						</div>
 					</div>
                 </div>
-	              
+	             
 	            </div>
 	          </form>
           </div> <!-- .col-md-8 -->
